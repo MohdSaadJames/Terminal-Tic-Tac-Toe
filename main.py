@@ -76,8 +76,10 @@ print("Welcome to the Terminal-Tic-Tac-Toe game for two players!\n")
 
 player1 = input('Who is taking "X"? ')
 player2 = input('Who is taking "O"? ')
-
+print("\n")
 winner = ""
+
+print("Enter quit anytime to 'quit', mind you it will make the other player win.\n\n")
 
 def gamecheck():
     global winner
@@ -109,6 +111,10 @@ def gameloop():
   if chance:
     print(f"{player1}'s turn!")
     pos = input("Pick a square from 1-9 where you want to place your \"X\"! ")
+    print("\n")
+    if pos == "quit":
+        print(f"{player2} won since you quit.")
+        return
     try:
       int(pos)
     except:
@@ -134,13 +140,16 @@ def gameloop():
   else:
     print(f"{player2}'s turn!")
     pos = input("Pick a square from 1-9 where you want to place your \"O\"! ")
+    if pos == "quit":
+        print(f"{player1} won since you quit.")
+        return
     try:
       int(pos)
     except:
       print("\nYou are disqualified for not following the rules.")
       print(f"{player1} wins! ")
       return
-    if int(pos) in posdone or int(pos)>9 or int(pos)<1:
+    if (int(pos) in posdone) or (int(pos)>9 or int(pos)<1):
      print("\nYou are disqualified for not following the rules.")
      print(f"{player1} wins!")
      return
