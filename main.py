@@ -106,14 +106,14 @@ def gamecheck():
 chance = True
 drawboard()
 def gameloop():
+  global posdone
   global winner
   global chance  
   if chance:
     print(f"{player1}'s turn!")
     pos = input("Pick a square from 1-9 where you want to place your \"X\"! ")
-    print("\n")
     if pos == "quit":
-        print(f"{player2} won since you quit.")
+        print(f"\n{player2} won the game since you quit.")
         return
     try:
       int(pos)
@@ -121,7 +121,11 @@ def gameloop():
       print("\nYou are disqualified for not following the rules.")
       print(f"{player2} wins! ")
       return
-    if int(pos) > 9 or int(pos) < 1 and int(pos) not in posdone:
+    if int(pos) in posdone:
+        print("There's already a 'X' or 'O' at that place, you're disqaulified for the same.")
+        return
+        print(f"{player2} wins! ")
+    if int(pos) > 9 or int(pos) < 1:
      print("\nYou are disqualified for not following the rules.")
      print(f"{player2} wins!")
      return
@@ -141,7 +145,7 @@ def gameloop():
     print(f"{player2}'s turn!")
     pos = input("Pick a square from 1-9 where you want to place your \"O\"! ")
     if pos == "quit":
-        print(f"{player1} won since you quit.")
+        print(f"\n{player1} won the game since you quit.")
         return
     try:
       int(pos)
@@ -149,7 +153,11 @@ def gameloop():
       print("\nYou are disqualified for not following the rules.")
       print(f"{player1} wins! ")
       return
-    if (int(pos) in posdone) or (int(pos)>9 or int(pos)<1):
+    if int(pos) in posdone:
+        print("There's already a 'X' or 'O' at that place, you're disqaulified for the same.")
+        print(f"{player1} wins! ")
+        return
+    if int(pos)>9 or int(pos)<1:
      print("\nYou are disqualified for not following the rules.")
      print(f"{player1} wins!")
      return
